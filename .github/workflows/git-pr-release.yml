@@ -20,8 +20,8 @@ jobs:
       - run: git-pr-release-go --help
 
       - run: |
-          git-pr-release-go --from main --to release/stg --labels release
-          # echo "result=$(cat result.json)" >> $GITHUB_OUTPUT
+          git-pr-release-go --from main --to release/stg --labels release --json > result.json
+          echo "result=$(cat result.json)" >> $GITHUB_OUTPUT
         id: create-release-pr
         env:
           GITHUB_TOKEN: ${{ github.token }}
