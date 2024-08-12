@@ -22,10 +22,11 @@ jobs:
       - run: |
           git-pr-release-go --from main --to release/stg --labels release --json > result.json
           echo "result=$(cat result.json)" >> $GITHUB_OUTPUT
-          cat result.json
         id: create-release-pr
         env:
           GITHUB_TOKEN: ${{ github.token }}
+
+      - run: echo "result.json is $(cat result.json)"
 
       - run: echo "${{ steps.create-release-pr.outputs.result }}"
 
